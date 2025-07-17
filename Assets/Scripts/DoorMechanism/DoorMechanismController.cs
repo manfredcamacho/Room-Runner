@@ -11,13 +11,10 @@ public class DoorMechanism : MonoBehaviour
     [SerializeField] private DoorController doorB;
     [SerializeField] private LeverController leverB;
 
-    private AudioSource audioSrc;
-
     void Start()
     {
         leverA.OnLeverActivated.AddListener(onLeverActivated);
         leverB.OnLeverActivated.AddListener(onLeverActivated);
-        audioSrc = GetComponent<AudioSource>();
     }
 
     void onLeverActivated()
@@ -26,6 +23,6 @@ public class DoorMechanism : MonoBehaviour
         doorB.ToggleDoor();
         leverA.ToggleLever();
         leverB.ToggleLever();
-        audioSrc.Play();
+        SoundManager.PlaySfx(SoundType.DOOR);
     }
 }
